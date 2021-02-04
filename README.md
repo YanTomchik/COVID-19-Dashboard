@@ -1,1 +1,1 @@
-# COVID-19-Dashboard
+https://github.com/rolling-scopes-school/tasks/blob/master/tasks/covid-dashboard.md

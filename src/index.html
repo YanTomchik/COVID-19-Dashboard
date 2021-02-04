@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="./assets/leaflet/leaflet.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/png">
+  <script src="./assets/leaflet/leaflet.js"></script>
+  <title>Covid-19 Dashboard</title>
+</head>
+
+<body>
+  <header>
+    <div ></div>
+    <span class="header_description">COVID-19 Dashboard on <span class="last_date"></span></span>
+    <div class="github_links">
+      <div><a href="https://github.com/YanTomchik"><img src="./assets/pictures/yan_git.jpg" alt="git"></a></div>
+      <div></div>
+    </div>
+  </header>
+  <main>
+    <div class="wrapper_cases_by_region">
+      <div class="list_nav">
+        <div class="full_window_button full_window_button_countries_list"><img src="./assets/icons/full.png"
+            alt="full_window_button"></div>
+        <div class="list_switchers">
+          <div class="list_nav-switcher all-day-switcher">
+            <div class="all">All</div>
+            <div class="switcher_tracker switcher_tracker_period"></div>
+            <div class="day">Day</div>
+          </div>
+          <div class="list_nav-switcher absolut-switcher">
+            <div class="absolute">Abs.</div>
+            <div class="switcher_tracker switcher_tracker_unit"></div>
+            <div class="per_100k">100k</div>
+          </div>
+        </div>
+        <div class="list_nav_cases_wrapper">
+          <div class="list_nav_case case-diseased list_nav_case-active"><img src="./assets/icons/diseas-list-icon.png"
+              alt="diseas-list-icon"></div>
+          <div class="list_nav_case case-recovered"><img src="./assets/icons/recover-list-icon.png"
+              alt="recover-list-icon"></div>
+          <div class="list_nav_case case-dead"><img src="./assets/icons/dead-list-icon.png" alt="dead-list-icon">
+          </div>
+          <!-- <div class="list_nav_case case-world"><img src="./assets/icons/earth.png" alt="earth-icon">
+          </div> -->
+        </div>
+      </div>
+      <div class="list_search">
+        <input type="text" class="list_search_item"></input>
+        <div class="keyboard_icon">
+          <img src="./assets/icons/keyboard-icon.png" alt="keyboard-icon">
+        </div>
+      </div>
+      <div class="list_countries">
+      </div>
+    </div>
+
+    <div class="map_section_wrapper">
+      <div class="list_nav map_nav">
+        <div class="full_window_button full_window_button_map"><img src="./assets/icons/full.png"
+            alt="full_window_button"></div>
+        <div class="list_switchers">
+          <div class="list_nav-switcher all-day-switcher">
+            <div class="all">All</div>
+            <div class="switcher_tracker switcher_tracker_period"></div>
+            <div class="day">Day</div>
+          </div>
+          <div class="list_nav-switcher absolut-switcher">
+            <div class="absolute">Abs.</div>
+            <div class="switcher_tracker switcher_tracker_unit"></div>
+            <div class="per_100k">100k</div>
+          </div>
+        </div>
+        <div class="list_nav_cases_wrapper">
+          <div class="list_nav_case case-diseased list_nav_case-active"><img src="./assets/icons/diseas-list-icon.png"
+              alt="diseas-list-icon"></div>
+          <div class="list_nav_case case-recovered"><img src="./assets/icons/recover-list-icon.png"
+              alt="recover-list-icon"></div>
+          <div class="list_nav_case case-dead"><img src="./assets/icons/dead-list-icon.png" alt="dead-list-icon">
+          </div>
+        </div>
+      </div>
+      <div class="wrapper_map">
+        <div id="map" style="width: 100vw; height: 100vh;"></div>
+      </div>
+      <div class="map_legend">
+        <div class="cases_legend">
+          <div class="case_legend">
+            Confrimed
+            <div class="confirmed_map_legend"></div>
+          </div>
+          <div class="case_legend">
+            Recovered
+            <div class="recovered_map_legend"></div>
+          </div>
+          <div class="case_legend">
+            Deaths
+            <div class="death_map_legend"></div>
+          </div>
+        </div>
+        <div class="number_legend">
+          <div class="small">
+            <div class="small_wrapper"><img src="./assets/icons/yellow_circle.png" alt="yellow_circle"></div>
+            <span></span>
+          </div>
+          <div class="medium">
+            <div class="medium_wrapper"><img src="./assets/icons/green_circle.png" alt="green_circle"></div>
+            <span></span>
+          </div>
+          <div class="highe">
+            <div class="highe_wrapper"><img src="./assets/icons/red_circle.png" alt="red_circle"></div><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper_info">
+      <div class="full_window_button full_window_button_list"><img src="./assets/icons/full.png"
+          alt="full_window_button"></div>
+      <div class="wrapper_total_cases">
+        <div class="total-cases">
+          <div class="title title_total_cases">Total Cases</div>
+          <div class="value value_total_cases">0</div>
+        </div>
+      </div>
+      <div class="line_divide"></div>
+      <div class="wrapper_switchers">
+        <div class="list_switchers">
+          <div class="list_nav-switcher all-day-switcher">
+            <div class="all">All</div>
+            <div class="switcher_tracker switcher_tracker_period"></div>
+            <div class="day">Day</div>
+          </div>
+          <div class="list_nav-switcher absolut-switcher">
+            <div class="absolute">Abs.</div>
+            <div class="switcher_tracker switcher_tracker_unit"></div>
+            <div class="per_100k">100k</div>
+          </div>
+        </div>
+        <div class="list_nav_cases_wrapper">
+          <!-- <div class="list_nav_case case-diseased list_nav_case-active"><img src="./assets/icons/diseas-list-icon.png"
+              alt="diseas-list-icon"></div>
+          <div class="list_nav_case case-recovered"><img src="./assets/icons/recover-list-icon.png"
+              alt="recover-list-icon"></div>
+          <div class="list_nav_case case-dead"><img src="./assets/icons/dead-list-icon.png" alt="dead-list-icon">
+          </div> -->
+          <!-- <div class="list_nav_case case-world"><img src="./assets/icons/earth.png" alt="earth-icon">
+          </div> -->
+        </div>
+      </div>
+      <div class="list_content_wrapper">
+        <div class="wrapper_stats">
+          <div class="country">
+            <div class="title">Country:</div>
+            <div class="value">Global</div>
+          </div>
+          <div class="new_confimed">
+            <div class="title">New Confimed</div>
+            <div class="value">0</div>
+          </div>
+          <div class="recovered">
+            <div class="title">Recovered</div>
+            <div class="value">0</div>
+          </div>
+          <div class="deaths">
+            <div class="title">Deaths</div>
+            <div class="value">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper_graph">
+      <div class="full_window_button full_window_button_graph"><img src="./assets/icons/full.png"
+          alt="full_window_button"></div>
+      <div class="wrapper_switchers">
+        <div class="list_switchers">
+          <div class="list_nav-switcher all-day-switcher">
+            <div class="all">All</div>
+            <div class="switcher_tracker switcher_tracker_period"></div>
+            <div class="day">Day</div>
+          </div>
+          <div class="list_nav-switcher absolut-switcher">
+            <div class="absolute">Abs.</div>
+            <div class="switcher_tracker switcher_tracker_unit"></div>
+            <div class="per_100k">100k</div>
+          </div>
+        </div>
+        <div class="list_nav_cases_wrapper">
+          <div class="list_nav_case case-diseased list_nav_case-active"><img src="./assets/icons/diseas-list-icon.png"
+              alt="diseas-list-icon"></div>
+          <div class="list_nav_case case-recovered"><img src="./assets/icons/recover-list-icon.png"
+              alt="recover-list-icon"></div>
+          <div class="list_nav_case case-dead"><img src="./assets/icons/dead-list-icon.png" alt="dead-list-icon">
+          </div>
+          <!-- <div class="list_nav_case case-world"><img src="./assets/icons/earth.png" alt="earth-icon">
+          </div> -->
+        </div>
+      </div>
+      <div class="canvas_wrapper">
+        <canvas id="myChart" class="myChart"></canvas>
+      </div>
+    </div>
+  </main>
+  <div id="keyboard-wrapper">
+    <div class="keyboard">
+    </div>
+  </div>
+
+  <!-- <script src="js/drawGraph.js"></script> -->
+  <!-- <script src="js/drawDefaultGraph.js"></script> -->
+  <!-- <script src="js/drawTableByWorld.js"></script> -->
+  <script type="module" src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</body>
+
+</html>
